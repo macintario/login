@@ -16,7 +16,7 @@ connection.connect((err) => {
     }
     console.log('Conectado a la base de datos MySQL');
 });
-
+/*
 // Crear tabla de usuarios si no existe
 const createUsersTable = `
     CREATE TABLE IF NOT EXISTS users (
@@ -35,5 +35,6 @@ connection.query(createUsersTable, (err) => {
         console.log('Tabla de usuarios verificada/creada');
     }
 });
+*/
 
 module.exports = connection;

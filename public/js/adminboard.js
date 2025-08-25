@@ -71,21 +71,15 @@ function showMessage(message, type) {
 // Funciones de las acciones
 function showProfile() {
     // Obtener datos frescos antes de mostrar el perfil
-    fetch('/auth/escuela')
+    fetch('/auth/user')
         .then(response => response.json())
         .then(data => {
-            alert(`Perfil de ${data.escuela.siglas}`);
+            alert(`Perfil de ${data.user.username}\nEmail: ${data.user.email}\nMiembro desde: ${new Date(data.user.created_at).toLocaleDateString()}`);
         })
         .catch(error => {
             alert('Error cargando información del perfil');
         });
 }
-
-
-function cargaCaptura(){
-    window.location.href = '/captura';
-}
-
 
 function showSettings() {
     alert('Funcionalidad de configuración en desarrollo');

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard-Escuela</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
         <div class="nav-container">
             <h1>DES</h1>
             <div class="nav-user">
-                <span id="userWelcome">Bienvenido, </span>
+                <span id="userWelcome">DES Bienvenido, </span>
                 <a href="/logout" class="logout-btn">Cerrar Sesión</a>
             </div>
         </div>
@@ -25,12 +25,18 @@
 
         <div class="user-info">
             <h3>Información del Usuario</h3>
+            <div class="info-card">
+                <p><strong>Usuario:</strong> <span id="userUsername"></span></p>
+                <p><strong>Email:</strong> <span id="userEmail"></span></p>
+                <p><strong>ID:</strong> <span id="userId"></span></p>
+            </div>
         </div>
 
         <div class="actions">
             <h3>Acciones Disponibles</h3>
             <div class="action-buttons">
-                <button class="action-btn" onclick="showProfile()">Captura de datos</button>
+                <button class="action-btn" onclick="showProfile()">Ver Perfil</button>
+                <button class="action-btn" onclick="showSettings()">Configuración</button>
                 <button class="action-btn" onclick="showReports()">Reportes</button>
             </div>
         </div>

@@ -1,19 +1,19 @@
 {
   "name": "login-app",
   "version": "1.0.0",
-  "description": "Sistema de login con Node.js y MySQL",
+  "description": "Sistema de captura de cuantas",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "mysql2": "^3.6.0",
     "bcryptjs": "^2.4.3",
-    "express-session": "^1.17.3",
+    "body-parser": "^1.20.2",
     "dotenv": "^16.3.1",
-    "body-parser": "^1.20.2"
+    "express": "^4.18.2",
+    "express-session": "^1.18.2",
+    "mysql2": "^3.6.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

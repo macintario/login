@@ -35,13 +35,13 @@ body {
     color: white;
     text-decoration: none;
     padding: 0.5rem 1rem;
-    background-color: #dc3545;
+    background-color: #591236;
     border-radius: 4px;
     transition: background-color 0.3s;
 }
 
 .logout-btn:hover {
-    background-color: #c82333;
+    background-color: #D998B8;
 }
 
 .dashboard-container {
@@ -81,7 +81,7 @@ body {
     background: #f8f9fa;
     padding: 1.5rem;
     border-radius: 6px;
-    border-left: 4px solid #007bff;
+    border-left: 4px solid #305912;
 }
 
 .info-card p {
@@ -110,7 +110,7 @@ body {
 
 .action-btn {
     padding: 1rem;
-    background-color: #007bff;
+    background-color: #305912;
     color: white;
     border: none;
     border-radius: 6px;
@@ -120,7 +120,7 @@ body {
 }
 
 .action-btn:hover {
-    background-color: #0056b3;
+    background-color: #305912;
 }
 
 .session-info {
@@ -130,7 +130,7 @@ body {
 }
 
 .session-info a {
-    color: #007bff;
+    color: #305912;
     text-decoration: none;
 }
 

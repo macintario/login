@@ -36,11 +36,24 @@ app.get('/register', (req, res) => {
 
 app.get('/dashboard', (req, res) => {
     if (req.session.user) {
-        res.sendFile(path.join(__dirname, 'views', 'dashboard.html'));
+        if (req.session.user.tipoUsuario == '2') {
+            res.sendFile(path.join(__dirname, 'views', 'dashboard.html'));
+        } else {
+            res.sendFile(path.join(__dirname, 'views', 'adminboard.html'));
+        }
     } else {
         res.redirect('/');
     }
 });
+
+app.get('/captura', (req, res) => {
+    if (req.session.user) {
+            res.sendFile(path.join(__dirname, 'views', 'captura.html'));
+    } else {
+        res.redirect('/');
+    }
+});
+
 
 app.get('/logout', (req, res) => {
     req.session.destroy();
