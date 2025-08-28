@@ -48,7 +48,15 @@ app.get('/dashboard', (req, res) => {
 
 app.get('/captura', (req, res) => {
     if (req.session.user) {
-            res.sendFile(path.join(__dirname, 'views', 'captura.html'));
+            res.sendFile(path.join(__dirname, 'views', 'capturados.html'));
+    } else {
+        res.redirect('/');
+    }
+});
+
+app.get('/agregar', (req, res) => {
+    if (req.session.user) {
+            res.sendFile(path.join(__dirname, 'views', 'agregar.html'));
     } else {
         res.redirect('/');
     }
@@ -66,6 +74,14 @@ app.get('/auth/check', (req, res) => {
         res.json({ authenticated: true, user: req.session.user });
     } else {
         res.status(401).json({ authenticated: false });
+    }
+});
+
+app.get('/actualizar/:idAlumno', (req, res) => {
+    if (req.session.user) {
+            res.sendFile(path.join(__dirname, 'views', 'actualizar.html'));
+    } else {
+        res.redirect('/');
     }
 });
 

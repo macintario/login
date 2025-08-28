@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edición de Registro</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1>DES</h1>
+            <div class="nav-user">
+                <span id="userWelcome">Bienvenido, </span>
+                <a href="/logout" class="logout-btn">Cerrar Sesión</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="welcome-section">
+
+            <div class="user-info">
+                <h2>Editar Datos</h2>
+            </div>
+        </div>
+        <form id="actualizarForm" name="actualizarForm">
+            <div class="form-group">
+                <label for="rfc">RFC:</label>
+                <input type="text" id="rfc" name="rfc" required>
+            </div>
+            <div class="form-group">
+                <label for="paterno">Paterno:</label>
+                <input type="text" id="paterno" name="paterno" required>
+            </div>
+            <div class="form-group">
+                <label for="materno">Materno:</label>
+                <input type="text" id="materno" name="materno" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="CLABE">CLABE:</label>
+                <input type="text" id="CLABE" name="CLABE" required>
+            </div>
+            <div class="form-group">
+                <label for="promedio">Promedio:</label>
+                <input type="NUMBER" step=".01" id="promedio" name="promedio" required>
+            </div>
+            <div class="form-group">
+                <!--<label for="idEscuela">idEscuela:</label>-->
+                <input type="hidden" id="idEscuela" name="idEscuela" required>
+            </div>
+            <button type="submit">Actualizar</button>
+            <div class="form-group">
+                <!--<label for="idEscuela">idEscuela:</label>-->
+                <input type="hidden" id="idAlumno" name="idAlumno" required>
+            </div>
+        </form>
+    </div>
+    <script src="/js/actualizar.js"></script>
+</body>
+
+</html>

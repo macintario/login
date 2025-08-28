@@ -22,6 +22,12 @@ body {
     max-width: 400px;
 }
 
+.container h3 {
+    text-align: center;
+    margin-bottom: 5.5rem;
+    color: #3405a0;
+}
+
 .login-form h2 {
     text-align: center;
     margin-bottom: 1.5rem;
@@ -80,3 +86,4 @@ button:hover {
     color: #155724;
     border: 1px solid #c3e6cb;
 }
+

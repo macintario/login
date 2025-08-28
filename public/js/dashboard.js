@@ -25,20 +25,17 @@ async function loadUserInfo() {
         if (response.ok) {
             displayUserInfo(result.user);
         } else {
-            console.error('Error loading user info:', result.error);
+//            console.error('Error loading user info:', result.error);
             showMessage('Error cargando información del usuario', 'error');
         }
     } catch (error) {
-        console.error('Error:', error);
+//        console.error('Error:', error);
         showMessage('Error de conexión', 'error');
     }
 }
 
 function displayUserInfo(user) {
     document.getElementById('userWelcome').textContent += user.usuario;
-    document.getElementById('userUsername').textContent = user.usuario;
-    document.getElementById('userEmail').textContent = user.escuela;
-    document.getElementById('userId').textContent = user.idUsr;    
 }
 
 function createCreatedAtElement() {
@@ -82,7 +79,8 @@ function showProfile() {
 }
 
 
-function cargaCaptura(){
+function capturaDatos(){
+    console.log('Redirigiendo a captura de datos...');
     window.location.href = '/captura';
 }
 

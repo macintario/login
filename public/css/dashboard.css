@@ -13,7 +13,7 @@ body {
     background-color: #343a40;
     color: white;
     padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -54,7 +54,7 @@ body {
     background: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
     text-align: center;
 }
@@ -68,7 +68,7 @@ body {
     background: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
 }
 
@@ -93,7 +93,7 @@ body {
     background: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
 }
 
@@ -143,12 +143,79 @@ body {
         flex-direction: column;
         gap: 1rem;
     }
-    
+
     .dashboard-container {
         padding: 0 1rem;
     }
-    
+
     .action-buttons {
         grid-template-columns: 1fr;
     }
+
+}
+
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.15rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+button {
+    width: 60%;
+    padding: 0.25rem;
+    background-color: #5A1236;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #e25fa0;
+}
+
+.btn-primary {
+    background-color: #2c5a12;
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #78db27;
+    color: rgb(3, 41, 11);
+}
+.btn-danger {
+    background-color: #d61818;
+    color: white;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+tr td {
+    padding: 0.75rem;
+    border: 1px solid #011308;
+    background-color: #ffffff;
+    text-align: left;
+}
+
+th {
+  background-color: #98D9AE;
+    border: 1px solid #011308;
+    padding: 0.75rem;
+    text-align: left;
 }
