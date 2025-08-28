@@ -208,8 +208,8 @@ router.post('/actualizar', (req, res) => {
     }
     const { id } = req.params;
     const { rfc, paterno, materno, nombre, promedio, CLABE, idEscuela, idAlumno } = req.body;
-    console.log("Bdy");
-    console.log(req.body);
+//    console.log("Bdy");
+//    console.log(req.body);
     if (!rfc || !paterno || !materno || !nombre || !promedio || !CLABE) {
         return res.status(400).json({ error: 'Todos los campos son requeridos' });
     }
