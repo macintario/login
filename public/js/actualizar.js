@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
 //            console.log('Datos del formulario:', Array.from(formData.entries()));
             formData.forEach((value, key) => {
                 data[key] = value;
+                if (key === 'CLABE') {
+                    const validacion = validarCLABE(value);
+                    if (validacion.error) {
+                        alert('CLABE incorrecta: ' + validacion.error);
+                        return;
+                    }
+                }
             });
 
 

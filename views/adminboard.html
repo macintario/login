@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <h1>DES</h1>
             <div class="nav-user">
-                <span id="userWelcome">DES Bienvenido, </span>
+                <span id="userWelcome">Bienvenido, </span>
                 <a href="/logout" class="logout-btn">Cerrar Sesión</a>
             </div>
         </div>
@@ -23,14 +25,19 @@
             <!--<p>Has iniciado sesión correctamente en el sistema.</p>-->
         </div>
 
-        <div class="user-info">
-            <h3>Información del Usuario</h3>
-            <div class="info-card">
-                <p><strong>Usuario:</strong> <span id="userUsername"></span></p>
-                <p><strong>Email:</strong> <span id="userEmail"></span></p>
-                <p><strong>ID:</strong> <span id="userId"></span></p>
-            </div>
-        </div>
+        <h3>Información capturada</h3>
+        <table id="totalesTable">
+            <thead>
+                <tr>
+                    <th>Escuela</th>
+                    <th>Casos</th>
+                    <th>Accciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Datos del usuario se llenarán aquí -->
+            </tbody>
+        </table>
 
         <div class="actions">
             <h3>Acciones Disponibles</h3>
@@ -46,6 +53,7 @@
         </div>
     </div>
 
-    <script src="/js/dashboard.js"></script>
+    <script src="/js/adminboard.js"></script>
 </body>
+
 </html>

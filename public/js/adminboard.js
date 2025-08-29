@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     checkAuthentication().then(() => {
-        loadUserInfo();
+        cargaCapturados();
     });
 });
 
@@ -17,28 +17,30 @@ async function checkAuthentication() {
     }
 }
 
-async function loadUserInfo() {
-    try {
-        const response = await fetch('/auth/user');
-        const result = await response.json();
-        
-        if (response.ok) {
-            displayUserInfo(result.user);
-        } else {
-            console.error('Error loading user info:', result.error);
-            showMessage('Error cargando información del usuario', 'error');
+
+async function cargaCapturados() {
+    console.log('Cargando datos capturados...');
+    fetch('/auth/totesc').then(response => response.json()).then(data => {
+        console.log('Datos recibidos:', data);
+        for (const registro of data.data) {
+                        console.log('Registro:', registro);
+            agregaFila(registro);
         }
-    } catch (error) {
-        console.error('Error:', error);
-        showMessage('Error de conexión', 'error');
-    }
+    }).catch(error => {
+//        console.error('Error al obtener datos de cuentas:', error);
+    });
 }
+
+function agregaFila(registro) {
+    const tabla = document.getElementById('totalesTable').getElementsByTagName('tbody')[0];
+    const fila = tabla.insertRow();
+    fila.insertCell(0).innerText = registro.escuela;
+    fila.insertCell(1).innerText = registro.casos;
+}
+
 
 function displayUserInfo(user) {
     document.getElementById('userWelcome').textContent += user.usuario;
-    document.getElementById('userUsername').textContent = user.usuario;
-    document.getElementById('userEmail').textContent = user.escuela;
-    document.getElementById('userId').textContent = user.idUsr;    
 }
 
 function createCreatedAtElement() {
@@ -71,15 +73,22 @@ function showMessage(message, type) {
 // Funciones de las acciones
 function showProfile() {
     // Obtener datos frescos antes de mostrar el perfil
-    fetch('/auth/user')
+    fetch('/auth/escuela')
         .then(response => response.json())
         .then(data => {
-            alert(`Perfil de ${data.user.username}\nEmail: ${data.user.email}\nMiembro desde: ${new Date(data.user.created_at).toLocaleDateString()}`);
+            alert(`Perfil de ${data.escuela.siglas}`);
         })
         .catch(error => {
             alert('Error cargando información del perfil');
         });
 }
+
+
+function capturaDatos(){
+    console.log('Redirigiendo a captura de datos...');
+    window.location.href = '/captura';
+}
+
 
 function showSettings() {
     alert('Funcionalidad de configuración en desarrollo');

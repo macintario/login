@@ -208,8 +208,8 @@ router.post('/actualizar', (req, res) => {
     }
     const { id } = req.params;
     const { rfc, paterno, materno, nombre, promedio, CLABE, idEscuela, idAlumno } = req.body;
-//    console.log("Bdy");
-//    console.log(req.body);
+    //    console.log("Bdy");
+    //    console.log(req.body);
     if (!rfc || !paterno || !materno || !nombre || !promedio || !CLABE) {
         return res.status(400).json({ error: 'Todos los campos son requeridos' });
     }
@@ -228,7 +228,37 @@ router.post('/actualizar', (req, res) => {
         }
         res.json({ success: true, message: 'Registro actualizado exitosamente' });
     });
-}); 
+});
+
+router.get('/totesc', (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ error: 'No autenticado' });
+    }
+
+    //    const idEscuela = req.session.user.escuela;
+    console.log("Cargando totales por escuela");
+    let query = `select siglas as escuela, count(*) as casos  from ALUMNO a join ESCUELA e on a.idEscuela = e.idEscuela group by siglas order by 1`;
+    let countQuery = `select count(*) total from ALUMNO a join ESCUELA e on a.idEscuela = e.idEscuela`;
+    //let idEscuela = req.session.user.escuela;
+
+    //query += ` LIMIT ${start}, ${length}`;
+
+    //    console.log('Consultas generadas:', { query, countQuery });
+
+    db.query(countQuery, (err, countResult) => {
+        if (err) return res.status(500).json({ error: err.message });
+//        console.log('Resultados de conteo obtenidos:', countResult);
+        db.query(query, (err, results) => {
+            if (err) return res.status(500).json({ error: err.message });
+//            console.log('Resultados obtenidos:', results);
+            res.json({
+                recordsTotal: countResult[0].total,
+                recordsFiltered: countResult[0].total,
+                data: results
+            });
+        });
+    });
+});
 
 router.get('/obtenercta/:id', (req, res) => {
     if (!req.session.user) {
