@@ -237,7 +237,7 @@ router.get('/totesc', (req, res) => {
 
     //    const idEscuela = req.session.user.escuela;
     console.log("Cargando totales por escuela");
-    let query = `select siglas as escuela, count(*) as casos  from ALUMNO a join ESCUELA e on a.idEscuela = e.idEscuela group by siglas order by 1`;
+    let query = `select e.idEscuela, siglas as escuela, count(*) as casos  from ALUMNO a join ESCUELA e on a.idEscuela = e.idEscuela group by e.idEscuela, siglas order by 1`;
     let countQuery = `select count(*) total from ALUMNO a join ESCUELA e on a.idEscuela = e.idEscuela`;
     //let idEscuela = req.session.user.escuela;
 

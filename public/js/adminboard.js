@@ -36,6 +36,18 @@ function agregaFila(registro) {
     const fila = tabla.insertRow();
     fila.insertCell(0).innerText = registro.escuela;
     fila.insertCell(1).innerText = registro.casos;
+    //boton imprimir
+    const theId = 'accionesCell-' + registro.idEscuela;
+    const accionesCell = fila.insertCell(2).id = theId;
+    const celdaBoton = document.getElementById(theId);
+    const imprimirBtn = document.createElement('button');
+    imprimirBtn.className = 'btn-secondary';
+    imprimirBtn.title = 'Imprimir';
+    imprimirBtn.innerHTML = "<i class='fas fa-print'> </i>";
+    imprimirBtn.onclick = function() {
+        alert('Funcionalidad de impresión en desarrollo');
+    };
+    celdaBoton.appendChild(imprimirBtn);
 }
 
 
