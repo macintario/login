@@ -279,4 +279,23 @@ router.get('/obtenercta/:id', (req, res) => {
     });
 });
 
+router.get('/imprimirEscuela/:idEscuela', (req, res) => { 
+/*
+    if (!req.session.user) {
+        return res.status(401).json({ error: 'No autenticado' });
+    }
+        */
+console.log("Cargando listado por escuela..");
+    const { idEscuela } = req.params;
+
+    const selectQuery = 'SELECT * FROM ALUMNO WHERE idEscuela = ?';
+    db.query(selectQuery, [idEscuela], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error obteniendo registros' });
+        }
+        console.log('Resultados obtenidos:', results);
+        res.json(results);
+    }   );
+}); 
+
 module.exports = router;

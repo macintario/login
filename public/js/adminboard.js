@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     checkAuthentication().then(() => {
+        //displayUserInfo(user);
         cargaCapturados();
     });
 });
@@ -8,7 +9,7 @@ async function checkAuthentication() {
     try {
         const response = await fetch('/auth/check');
         const result = await response.json();
-        
+
         if (!result.authenticated) {
             window.location.href = '/';
         }
@@ -23,11 +24,11 @@ async function cargaCapturados() {
     fetch('/auth/totesc').then(response => response.json()).then(data => {
         console.log('Datos recibidos:', data);
         for (const registro of data.data) {
-                        console.log('Registro:', registro);
+            console.log('Registro:', registro);
             agregaFila(registro);
         }
     }).catch(error => {
-//        console.error('Error al obtener datos de cuentas:', error);
+        //        console.error('Error al obtener datos de cuentas:', error);
     });
 }
 
@@ -44,10 +45,33 @@ function agregaFila(registro) {
     imprimirBtn.className = 'btn-secondary';
     imprimirBtn.title = 'Imprimir';
     imprimirBtn.innerHTML = "<i class='fas fa-print'> </i>";
-    imprimirBtn.onclick = function() {
-        alert('Funcionalidad de impresión en desarrollo');
-    };
     celdaBoton.appendChild(imprimirBtn);
+
+    imprimirBtn.onclick = function () {
+//        alert('Funcionalidad de impresión en desarrollo');
+        fetch(`/generaPDF/${registro.idEscuela}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                } else {
+                    throw new Error('Error al generar el PDF');
+                }
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Escuela_${registro.escuela}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => {
+                console.error('Error al generar el PDF:', error);
+                showMessage('Error al generar el PDF', 'error');
+            });
+    }
 }
 
 
@@ -72,11 +96,11 @@ function showMessage(message, type) {
         messageDiv.className = `message ${type}`;
         document.querySelector('.dashboard-container').prepend(messageDiv);
     }
-    
+
     messageDiv.textContent = message;
     messageDiv.className = `message ${type}`;
     messageDiv.style.display = 'block';
-    
+
     setTimeout(() => {
         messageDiv.style.display = 'none';
     }, 5000);
@@ -96,7 +120,7 @@ function showProfile() {
 }
 
 
-function capturaDatos(){
+function capturaDatos() {
     console.log('Redirigiendo a captura de datos...');
     window.location.href = '/captura';
 }
