@@ -37,7 +37,7 @@ function guardarDatos() {
         return;
     }
     //console.log('Datos a enviar:', data);
-    fetch('/auth/agregarcta', {
+    fetch('/cuentas/auth/agregarcta', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ function guardarDatos() {
         .then(result => {
             if (result.success) {
                 alert('Registro agregado exitosamente');
-                window.location.href = '/captura';
+                window.location.href = '/cuentas/captura';
             } else {
                 alert('Error al agregar registro: ' + result.error);
             }
@@ -60,16 +60,16 @@ function guardarDatos() {
 }
 async function checkAuthentication() {
     try {
-        const response = await fetch('/auth/check');
+        const response = await fetch('/cuentas/auth/check');
         const result = await response.json();
         //console.log(result);
         if (!result.authenticated) {
-            window.location.href = '/';
+            window.location.href = '/cuentas';
         }
         usr = result.user.username;
         idEscuela = result.user.escuela;
         //        console.log(idEscuela);
     } catch (error) {
-        window.location.href = '/';
+        window.location.href = '/cuentas';
     }
 }

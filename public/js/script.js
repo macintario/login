@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             };
 
             try {
-                const response = await fetch('/auth/login', {
+                const response = await fetch('/cuentas/auth/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (response.ok) {
                     showMessage('Login exitoso! Redirigiendo...', 'success');
                     setTimeout(() => {
-                        window.location.href = '/dashboard';
+                        window.location.href = '/cuentas/dashboard';
                     }, 1000);
                 } else {
                     showMessage(result.error, 'error');
@@ -44,11 +44,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     async function checkSession() {
         try {
-            const response = await fetch('/auth/check');
+            const response = await fetch('/cuentas/auth/check');
             const result = await response.json();
 
             if (result.authenticated) {
-                window.location.href = '/dashboard';
+                window.location.href = '/cuentas/dashboard';
             }
         } catch (error) {
             console.log('No hay sesión activa');

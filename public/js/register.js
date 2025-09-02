@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         try {
-            const response = await fetch('/auth/register', {
+            const response = await fetch('/cuentas/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.ok) {
                 showMessage('Usuario creado exitosamente! Redirigiendo al login...', 'success');
                 setTimeout(() => {
-                    window.location.href = '/';
+                    window.location.href = '/cuentas';
                 }, 2000);
             } else {
                 showMessage(result.error, 'error');

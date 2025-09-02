@@ -6,20 +6,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function checkAuthentication() {
     try {
-        const response = await fetch('/auth/check');
+        const response = await fetch('/cuentas/auth/check');
         const result = await response.json();
         
         if (!result.authenticated) {
-            window.location.href = '/';
+            window.location.href = '/cuentas';
         }
     } catch (error) {
-        window.location.href = '/';
+        window.location.href = '/cuentas';
     }
 }
 
 async function loadUserInfo() {
     try {
-        const response = await fetch('/auth/user');
+        const response = await fetch('/cuentas/auth/user');
         const result = await response.json();
         
         if (response.ok) {
@@ -68,7 +68,7 @@ function showMessage(message, type) {
 // Funciones de las acciones
 function showProfile() {
     // Obtener datos frescos antes de mostrar el perfil
-    fetch('/auth/escuela')
+    fetch('/cuentas/auth/escuela')
         .then(response => response.json())
         .then(data => {
             alert(`Perfil de ${data.escuela.siglas}`);

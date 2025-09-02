@@ -7,20 +7,20 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function agregaRegistro() {
-    window.location.href = '/agregar';
+    window.location.href = '/cuentas/agregar';
 }
 
 async function checkAuthentication() {
     try {
-        const response = await fetch('/auth/check');
+        const response = await fetch('/cuentas/auth/check');
         const result = await response.json();
         //        console.log(result);
         if (!result.authenticated) {
-            window.location.href = '/';
+            window.location.href = '/cuentas';
         }
         usr = result.user.username;
     } catch (error) {
-        window.location.href = '/';
+        window.location.href = '/cuentas';
     }
 }
 function llenaTabla() {
@@ -74,12 +74,12 @@ function agregaFila(registro) {
 function actualizarRegistro(idAlumno) {
     // Aquí puedes agregar la lógica para actualizar el registro
     //alert('Actualizar registro: ' + idAlumno);
-    window.location.href = `/actualizar/${idAlumno}`;
+    window.location.href = `/cuentas/actualizar/${idAlumno}`;
 }
 
 function eliminarRegistro(idAlumno) {
     if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
-        fetch(`/auth/eliminarcta/${idAlumno}`, {
+        fetch(`/cuentas/auth/eliminarcta/${idAlumno}`, {
             method: 'DELETE'
         })
             .then(response => response.json())
