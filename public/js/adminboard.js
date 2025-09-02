@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function checkAuthentication() {
     try {
-        const response = await fetch('/cuentas/auth/check');
+        const response = await fetch('/auth/check');
         const result = await response.json();
 
         if (!result.authenticated) {
@@ -21,7 +21,7 @@ async function checkAuthentication() {
 
 async function cargaCapturados() {
     console.log('Cargando datos capturados...');
-    fetch('/cuentas/auth/totesc').then(response => response.json()).then(data => {
+    fetch('/auth/totesc').then(response => response.json()).then(data => {
         console.log('Datos recibidos:', data);
         for (const registro of data.data) {
             console.log('Registro:', registro);
@@ -49,7 +49,7 @@ function agregaFila(registro) {
 
     imprimirBtn.onclick = function () {
 //        alert('Funcionalidad de impresión en desarrollo');
-        fetch(`/cuentas/generaPDF/${registro.idEscuela}`)
+        fetch(`/generaPDF/${registro.idEscuela}`)
             .then(response => {
                 if (response.ok) {
                     return response.blob();
@@ -109,7 +109,7 @@ function showMessage(message, type) {
 // Funciones de las acciones
 function showProfile() {
     // Obtener datos frescos antes de mostrar el perfil
-    fetch('/cuentas/auth/escuela')
+    fetch('/auth/escuela')
         .then(response => response.json())
         .then(data => {
             alert(`Perfil de ${data.escuela.siglas}`);

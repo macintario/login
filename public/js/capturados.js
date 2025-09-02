@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function agregaRegistro() {
-    window.location.href = '/cuentas/agregar';
+    window.location.href = '/agregar';
 }
 
 async function checkAuthentication() {
     try {
-        const response = await fetch('/cuentas/auth/check');
+        const response = await fetch('/auth/check');
         const result = await response.json();
         //        console.log(result);
         if (!result.authenticated) {
@@ -74,12 +74,12 @@ function agregaFila(registro) {
 function actualizarRegistro(idAlumno) {
     // Aquí puedes agregar la lógica para actualizar el registro
     //alert('Actualizar registro: ' + idAlumno);
-    window.location.href = `/cuentas/actualizar/${idAlumno}`;
+    window.location.href = `/actualizar/${idAlumno}`;
 }
 
 function eliminarRegistro(idAlumno) {
     if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
-        fetch(`/cuentas/auth/eliminarcta/${idAlumno}`, {
+        fetch(`/auth/eliminarcta/${idAlumno}`, {
             method: 'DELETE'
         })
             .then(response => response.json())

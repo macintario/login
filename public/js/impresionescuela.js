@@ -8,7 +8,7 @@ async function cargaCapturados() {
 
     const idEscuela = window.location.pathname.split('/').slice(-1)[0];
     console.log('ID Escuela:', window.location.pathname);
-    const destino = `/cuentas/auth/imprimirEscuela/${idEscuela}`;
+    const destino = `/auth/imprimirEscuela/${idEscuela}`;
     var registros = 0;
     fetch(destino).then(response => response.json()).then(data => {
         console.log('Datos recibidos:', data);

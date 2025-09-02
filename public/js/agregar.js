@@ -37,7 +37,7 @@ function guardarDatos() {
         return;
     }
     //console.log('Datos a enviar:', data);
-    fetch('/cuentas/auth/agregarcta', {
+    fetch('/auth/agregarcta', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ function guardarDatos() {
         .then(result => {
             if (result.success) {
                 alert('Registro agregado exitosamente');
-                window.location.href = '/cuentas/captura';
+                window.location.href = '/captura';
             } else {
                 alert('Error al agregar registro: ' + result.error);
             }
@@ -60,7 +60,7 @@ function guardarDatos() {
 }
 async function checkAuthentication() {
     try {
-        const response = await fetch('/cuentas/auth/check');
+        const response = await fetch('/auth/check');
         const result = await response.json();
         //console.log(result);
         if (!result.authenticated) {
