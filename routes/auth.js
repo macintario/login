@@ -247,10 +247,10 @@ router.get('/totesc', (req, res) => {
 
     db.query(countQuery, (err, countResult) => {
         if (err) return res.status(500).json({ error: err.message });
-//        console.log('Resultados de conteo obtenidos:', countResult);
+        //        console.log('Resultados de conteo obtenidos:', countResult);
         db.query(query, (err, results) => {
             if (err) return res.status(500).json({ error: err.message });
-//            console.log('Resultados obtenidos:', results);
+            //            console.log('Resultados obtenidos:', results);
             res.json({
                 recordsTotal: countResult[0].total,
                 recordsFiltered: countResult[0].total,
@@ -279,23 +279,28 @@ router.get('/obtenercta/:id', (req, res) => {
     });
 });
 
-router.get('/imprimirEscuela/:idEscuela', (req, res) => { 
-/*
-    if (!req.session.user) {
-        return res.status(401).json({ error: 'No autenticado' });
-    }
-        */
-console.log("Cargando listado por escuela..");
-    const { idEscuela } = req.params;
-
-    const selectQuery = 'SELECT * FROM ALUMNO WHERE idEscuela = ?';
-    db.query(selectQuery, [idEscuela], (err, results) => {
-        if (err) {
-            return res.status(500).json({ error: 'Error obteniendo registros' });
+router.get('/imprimirEscuela/:idEscuela', (req, res) => {
+    /*
+        if (!req.session.user) {
+            return res.status(401).json({ error: 'No autenticado' });
         }
-        console.log('Resultados obtenidos:', results);
-        res.json(results);
-    }   );
-}); 
+            */
+    console.log("Cargando listado por escuela..");
+    const { idEscuela } = req.params;
+    try {
+        const selectQuery = 'SELECT rfc, paterno, materno, a.nombre as nombre, promedio, CLABE, e.siglas as escuela  FROM ALUMNO a join ESCUELA e on e.idEscuela = a.idEscuela WHERE a.idEscuela = ? ';
+        console.log("Ejecutando consulta para escuela:", selectQuery, idEscuela);
+        db.query(selectQuery, [idEscuela], (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: 'Error obteniendo registros' });
+            }
+            console.log('Resultados obtenidos:', results);
+            res.json(results);
+        });
+    } catch (error) {
+        console.error('Error en /imprimirEscuela/:idEscuela', error);
+        res.status(500).json({ error: 'Error del servidor' });
+    }
+});
 
 module.exports = router;
