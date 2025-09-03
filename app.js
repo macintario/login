@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('cuentas/public'));
+app.use('/cuentas',express.static('public'));
 
 // Configuración de sesiones
 app.use(session({
@@ -43,6 +43,7 @@ router.get('/register', (req, res) => {
 });
 
 router.get('/dashboard', (req, res) => {
+    console.log('Usuario en sesión:', req.session.user);
     if (req.session.user) {
         if (req.session.user.tipoUsuario == '2') {
             res.sendFile(path.join(__dirname, 'views', 'dashboard.html'));
@@ -63,6 +64,7 @@ router.get('/captura', (req, res) => {
 });
 
 router.get('/agregar', (req, res) => {
+    console.log('Usuario en sesión:', req.session.user);
     if (req.session.user) {
         res.sendFile(path.join(__dirname, 'views', 'agregar.html'));
     } else {

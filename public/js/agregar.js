@@ -48,7 +48,7 @@ function guardarDatos() {
         .then(result => {
             if (result.success) {
                 alert('Registro agregado exitosamente');
-                window.location.href = '/captura';
+                window.location.href = '/cuentas/captura';
             } else {
                 alert('Error al agregar registro: ' + result.error);
             }

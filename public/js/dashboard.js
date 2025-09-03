@@ -19,7 +19,7 @@ async function checkAuthentication() {
 
 async function loadUserInfo() {
     try {
-        const response = await fetch('/auth/user');
+        const response = await fetch('/cuentas/auth/user');
         const result = await response.json();
         
         if (response.ok) {
@@ -68,7 +68,7 @@ function showMessage(message, type) {
 // Funciones de las acciones
 function showProfile() {
     // Obtener datos frescos antes de mostrar el perfil
-    fetch('/auth/escuela')
+    fetch('/cuentas/auth/escuela')
         .then(response => response.json())
         .then(data => {
             alert(`Perfil de ${data.escuela.siglas}`);
@@ -81,7 +81,7 @@ function showProfile() {
 
 function capturaDatos(){
     console.log('Redirigiendo a captura de datos...');
-    window.location.href = '/captura';
+    window.location.href = '/cuentas/captura';
 }
 
 

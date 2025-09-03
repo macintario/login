@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function agregaRegistro() {
-    window.location.href = '/agregar';
+    window.location.href = '/cuentas/agregar';
 }
 
 async function checkAuthentication() {
@@ -74,7 +74,7 @@ function agregaFila(registro) {
 function actualizarRegistro(idAlumno) {
     // Aquí puedes agregar la lógica para actualizar el registro
     //alert('Actualizar registro: ' + idAlumno);
-    window.location.href = `/actualizar/${idAlumno}`;
+    window.location.href = `/cuentas/actualizar/${idAlumno}`;
 }
 
 function eliminarRegistro(idAlumno) {
