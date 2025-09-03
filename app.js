@@ -104,10 +104,10 @@ router.get('/generaPDF/:idEscuela', async (req, res) => {
     const url = `http://localhost:3000/cuentas/imprimirEscuela/${req.params.idEscuela}`;
     console.log('Generando PDF para URL:', url);
     const archivoCuentas = `cuentas-${req.params.idEscuela}.pdf`;
-    generarPDFAvanzado(url, archivoCuentas)
+    await generarPDFAvanzado(url, archivoCuentas)
         .then(() => console.log('Proceso completado'))
         .catch(err => console.error('Error PDF:', err));
-
+    console.log('Enviando archivo:', archivoCuentas);
     res.sendFile(path.join(__dirname, archivoCuentas));
 
     await browser.close();
@@ -140,9 +140,8 @@ async function generarPDFAvanzado(url, outputPath) {
             waitUntil: 'networkidle0',
         });
         console.log('Cargada a la URL:');
-
         // Esperar a que ciertos elementos carguen (opcional)
-        await page.waitForSelector('finreporte', { timeout: 20000 }).catch(() => {
+        await page.waitForSelector('body', { timeout: 20000 }).catch(() => {
             console.log('El selector finreporte no se encontró, continuando...')
         });
 

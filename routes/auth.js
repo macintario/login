@@ -294,7 +294,7 @@ router.get('/imprimirEscuela/:idEscuela', (req, res) => {
             if (err) {
                 return res.status(500).json({ error: 'Error obteniendo registros' });
             }
-            console.log('Resultados obtenidos:', results);
+            //console.log('Resultados obtenidos:', results);
             res.json(results);
         });
     } catch (error) {

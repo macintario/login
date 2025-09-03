@@ -24,7 +24,7 @@ async function cargaCapturados() {
         }
         const final = document.getElementById('reporte');
         console.log('Final reporte');
-        final.insertAdjacentHTML('beforeBegin', document.createElement('div').id = 'finreporte');
+        //final.insertAdjacentHTML('beforeBegin', document.createElement('div').id = 'finreporte');
 
     }).catch(error => {
                 console.error('Error al obtener datos de cuentas:', error);
