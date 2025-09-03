@@ -12,6 +12,9 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth');
 
 const app = express();
+const router = express.Router();
+
+
 const PORT = process.env.PORT || 3000;
 
 // Middleware
@@ -28,18 +31,18 @@ app.use(session({
 }));
 
 // Rutas
-app.use('/auth', authRoutes);
+router.use('/auth', authRoutes);
 
 // Servir archivos estáticos
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'login.html'));
 });
 
-app.get('/register', (req, res) => {
+router.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'register.html'));
 });
 
-app.get('/dashboard', (req, res) => {
+router.get('/dashboard', (req, res) => {
     if (req.session.user) {
         if (req.session.user.tipoUsuario == '2') {
             res.sendFile(path.join(__dirname, 'views', 'dashboard.html'));
@@ -51,7 +54,7 @@ app.get('/dashboard', (req, res) => {
     }
 });
 
-app.get('/captura', (req, res) => {
+router.get('/captura', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, 'views', 'capturados.html'));
     } else {
@@ -59,7 +62,7 @@ app.get('/captura', (req, res) => {
     }
 });
 
-app.get('/agregar', (req, res) => {
+router.get('/agregar', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, 'views', 'agregar.html'));
     } else {
@@ -68,7 +71,7 @@ app.get('/agregar', (req, res) => {
 });
 
 
-app.get('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
@@ -82,7 +85,7 @@ app.get('/auth/check', (req, res) => {
     }
 });
 
-app.get('/actualizar/:idAlumno', (req, res) => {
+router.get('/actualizar/:idAlumno', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, 'views', 'actualizar.html'));
     } else {
@@ -90,12 +93,12 @@ app.get('/actualizar/:idAlumno', (req, res) => {
     }
 });
 
-app.get('/imprimirEscuela/:idEscuela', (req, res) => {
+router.get('/imprimirEscuela/:idEscuela', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'imprimirEscuela.html'));
 });
 
 
-app.get('/generaPDF/:idEscuela', async (req, res) => {
+router.get('/generaPDF/:idEscuela', async (req, res) => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     const url = `http://localhost:3000/imprimirEscuela/${req.params.idEscuela}`;
@@ -198,6 +201,8 @@ async function generarPDFAvanzado(url, outputPath) {
     }
 }
 
+//prefijo
+app.use('/cuentas', router);
 
 //server
 
