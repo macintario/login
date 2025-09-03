@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static('cuentas/public'));
 
 // Configuración de sesiones
 app.use(session({
@@ -50,7 +50,7 @@ router.get('/dashboard', (req, res) => {
             res.sendFile(path.join(__dirname, 'views', 'adminboard.html'));
         }
     } else {
-        res.redirect('/');
+        res.redirect('/cuentas/');
     }
 });
 
@@ -58,7 +58,7 @@ router.get('/captura', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, 'views', 'capturados.html'));
     } else {
-        res.redirect('/');
+        res.redirect('/cuentas/');
     }
 });
 
@@ -66,14 +66,14 @@ router.get('/agregar', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, 'views', 'agregar.html'));
     } else {
-        res.redirect('/');
+        res.redirect('/cuentas/');
     }
 });
 
 
 router.get('/logout', (req, res) => {
     req.session.destroy();
-    res.redirect('/');
+    res.redirect('/cuentas/');
 });
 
 // Ruta para verificar autenticación
@@ -89,7 +89,7 @@ router.get('/actualizar/:idAlumno', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, 'views', 'actualizar.html'));
     } else {
-        res.redirect('/');
+        res.redirect('/cuentas/');
     }
 });
 
