@@ -8,7 +8,7 @@ async function cargaCapturados() {
 
     const idEscuela = window.location.pathname.split('/').slice(-1)[0];
     console.log('ID Escuela:', window.location.pathname);
-    const destino = `/auth/imprimirEscuela/${idEscuela}`;
+    const destino = `/cuentas/auth/imprimirEscuela/${idEscuela}`;
     var registros = 0;
     fetch(destino).then(response => response.json()).then(data => {
         console.log('Datos recibidos:', data);
@@ -22,6 +22,10 @@ async function cargaCapturados() {
             agregaFila(registro);
 //            }
         }
+        const final = document.getElementById('reporte');
+        console.log('Final reporte');
+        final.insertAdjacentHTML('beforeBegin', document.createElement('div').id = 'finreporte');
+
     }).catch(error => {
                 console.error('Error al obtener datos de cuentas:', error);
     });

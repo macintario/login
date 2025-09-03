@@ -101,25 +101,25 @@ router.get('/imprimirEscuela/:idEscuela', (req, res) => {
 router.get('/generaPDF/:idEscuela', async (req, res) => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    const url = `http://localhost:3000/imprimirEscuela/${req.params.idEscuela}`;
+    const url = `http://localhost:3000/cuentas/imprimirEscuela/${req.params.idEscuela}`;
     console.log('Generando PDF para URL:', url);
     const archivoCuentas = `cuentas-${req.params.idEscuela}.pdf`;
     generarPDFAvanzado(url, archivoCuentas)
         .then(() => console.log('Proceso completado'))
-        .catch(err => console.error('Error:', err));
+        .catch(err => console.error('Error PDF:', err));
 
     res.sendFile(path.join(__dirname, archivoCuentas));
 
     await browser.close();
     // Eliminar el archivo después de enviarlo al cliente
-/*    fs.unlink('documento-avanzado.pdf', (err) => {
-        if (err) {
-            console.error('Error al eliminar el archivo:', err);
-        } else {
-            console.log('Archivo eliminado exitosamente');
-        }
-
-    });*/
+    /*    fs.unlink('documento-avanzado.pdf', (err) => {
+            if (err) {
+                console.error('Error al eliminar el archivo:', err);
+            } else {
+                console.log('Archivo eliminado exitosamente');
+            }
+    
+        });*/
 });
 
 
@@ -130,19 +130,23 @@ async function generarPDFAvanzado(url, outputPath) {
     });
 
     const page = await browser.newPage();
-
     try {
         // Configurar viewport
         await page.setViewport({ width: 1200, height: 800 });
 
         // Navegar a la página
+        console.log('Navegando a la URL:', url);
         await page.goto(url, {
             waitUntil: 'networkidle0',
         });
+        console.log('Cargada a la URL:');
 
         // Esperar a que ciertos elementos carguen (opcional)
-        await page.waitForSelector('body');
+        await page.waitForSelector('finreporte', { timeout: 20000 }).catch(() => {
+            console.log('El selector finreporte no se encontró, continuando...')
+        });
 
+        console.log('Página cargada completamente');
         // Opciones avanzadas para el PDF
         const pdfOptions = {
             path: outputPath,
@@ -191,6 +195,7 @@ async function generarPDFAvanzado(url, outputPath) {
         const pdfBuffer = await page.pdf(pdfOptions);
 
         console.log('PDF generado exitosamente');
+
         return pdfBuffer;
 
     } catch (error) {

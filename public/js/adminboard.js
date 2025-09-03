@@ -21,7 +21,7 @@ async function checkAuthentication() {
 
 async function cargaCapturados() {
     console.log('Cargando datos capturados...');
-    fetch('/auth/totesc').then(response => response.json()).then(data => {
+    fetch('/cuentas/auth/totesc').then(response => response.json()).then(data => {
         console.log('Datos recibidos:', data);
         for (const registro of data.data) {
             console.log('Registro:', registro);
@@ -49,7 +49,7 @@ function agregaFila(registro) {
 
     imprimirBtn.onclick = function () {
 //        alert('Funcionalidad de impresión en desarrollo');
-        fetch(`/generaPDF/${registro.idEscuela}`)
+        fetch(`/cuentas/generaPDF/${registro.idEscuela}`)
             .then(response => {
                 if (response.ok) {
                     return response.blob();
