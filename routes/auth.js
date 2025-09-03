@@ -130,12 +130,12 @@ router.get('/cuentas', (req, res) => {
     const length = parseInt(req.query.length) || 10;
     const search = req.query.search?.value || '';
 
-    //console.log('Parámetros recibidos:', { start, length, search });
+    console.log('/cuentas Parámetros recibidos:', { start, length, search });
 
     let query = `SELECT * FROM ALUMNO WHERE 1=1`;
     let countQuery = `SELECT COUNT(*) as total FROM ALUMNO WHERE 1=1`;
     let idEscuela = req.session.user.escuela;
-    query += ` AND idEscuela = ${idEscuela}`;
+    query += ` AND idEscuela = ${idEscuela} order by  paterno, materno, nombre`;
     countQuery += ` AND idEscuela = ${idEscuela}`;
     if (search) {
         query += ` AND (nombre LIKE '%${search}%' OR email LIKE '%${search}%')`;

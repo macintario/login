@@ -88,6 +88,7 @@ app.get('/auth/check', (req, res) => {
 });
 
 router.get('/actualizar/:idAlumno', (req, res) => {
+    console.log('ACTUALIZANDO Usuario en sesión:', req.session.user);
     if (req.session.user) {
         res.sendFile(path.join(__dirname, 'views', 'actualizar.html'));
     } else {

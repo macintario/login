@@ -37,7 +37,7 @@ function guardarDatos() {
         return;
     }
     //console.log('Datos a enviar:', data);
-    fetch('/auth/agregarcta', {
+    fetch('/cuentas/auth/agregarcta', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

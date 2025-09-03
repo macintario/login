@@ -25,8 +25,8 @@ async function checkAuthentication() {
 }
 function llenaTabla() {
     //    console.log('Cargando información del Cuentas...');
-    fetch('/auth/cuentas').then(response => response.json()).then(data => {
-//        console.log('Numero de datos recibidos:', data.recordsTotal);
+    fetch('/cuentas/auth/cuentas').then(response => response.json()).then(data => {
+        console.log('Numero de datos recibidos:', data.recordsTotal);
         for (const registro of data.data) {
             //            console.log('Registro:', registro);
             agregaFila(registro);
@@ -73,13 +73,13 @@ function agregaFila(registro) {
 
 function actualizarRegistro(idAlumno) {
     // Aquí puedes agregar la lógica para actualizar el registro
-    //alert('Actualizar registro: ' + idAlumno);
+    alert('Actualizar registro: ' + idAlumno);
     window.location.href = `/cuentas/actualizar/${idAlumno}`;
 }
 
 function eliminarRegistro(idAlumno) {
     if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
-        fetch(`/auth/eliminarcta/${idAlumno}`, {
+        fetch(`/cuentas/auth/eliminarcta/${idAlumno}`, {
             method: 'DELETE'
         })
             .then(response => response.json())

@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const idAlumno = formData.get('idAlumno');
 //            console.log('Actualizando información del Alumno:', idAlumno);
 //            console.log('Datos a enviar:', data);
-            fetch(`/auth/actualizar`, {
+            fetch(`/cuentas/auth/actualizar`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }).then(response => response.json()).then(data => {
                 if (data.success) {
                     alert('Registro actualizado exitosamente.');
-                    window.location.href = '/captura'; // Redirige a la página de capturados
+                    window.location.href = '/cuentas/captura'; // Redirige a la página de capturados
                 } else {
                     alert('Error al actualizar el registro: ' + data.message);
                 }
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function actualizarRegistro(idAlumno) {
     // Aquí puedes agregar la lógica para actualizar el registro
 //    alert('Actualizar registro: ' + idAlumno);
-    window.location.href = `/actualizar/${idAlumno}`;
+    window.location.href = `/cuentas/actualizar/${idAlumno}`;
 }
 async function checkAuthentication() {
     try {
@@ -67,7 +67,7 @@ function llenaForma() {
     const urlParts = window.location.pathname.split('/');
     const idAlumno = urlParts[urlParts.length - 1];
 //    console.log('Cargando información del Alumno con ID:', idAlumno);
-    fetch(`/auth/obtenercta/${idAlumno}`).then(response => response.json()).then(data => {
+    fetch(`/cuentas/auth/obtenercta/${idAlumno}`).then(response => response.json()).then(data => {
   //      console.log('Datos recibidos:', data);
         if (data && data.length > 0) {
             const registro = data[0];
