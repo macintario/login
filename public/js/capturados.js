@@ -73,7 +73,7 @@ function agregaFila(registro) {
 
 function actualizarRegistro(idAlumno) {
     // Aquí puedes agregar la lógica para actualizar el registro
-    alert('Actualizar registro: ' + idAlumno);
+    //alert('Actualizar registro: ' + idAlumno);
     window.location.href = `/cuentas/actualizar/${idAlumno}`;
 }
 
