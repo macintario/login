@@ -79,7 +79,8 @@ router.get('/logout', (req, res) => {
 });
 
 // Ruta para verificar autenticación
-app.get('/auth/check', (req, res) => {
+router.get('/auth/check', (req, res) => {
+    console.log('Verificando autenticación para usuario en sesión:', req.session.user);
     if (req.session.user) {
         res.json({ authenticated: true, user: req.session.user });
     } else {

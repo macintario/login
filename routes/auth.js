@@ -247,10 +247,10 @@ router.get('/totesc', (req, res) => {
 
     db.query(countQuery, (err, countResult) => {
         if (err) return res.status(500).json({ error: err.message });
-        //        console.log('Resultados de conteo obtenidos:', countResult);
+                console.log('Resultados de conteo obtenidos:', countResult);
         db.query(query, (err, results) => {
             if (err) return res.status(500).json({ error: err.message });
-            //            console.log('Resultados obtenidos:', results);
+                        console.log('Resultados obtenidos:', results);
             res.json({
                 recordsTotal: countResult[0].total,
                 recordsFiltered: countResult[0].total,

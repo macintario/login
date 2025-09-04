@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function checkAuthentication() {
     try {
-        const response = await fetch('/auth/check');
+        const response = await fetch('/cuentas/auth/check');
         const result = await response.json();
         
         if (!result.authenticated) {
@@ -19,7 +19,7 @@ async function checkAuthentication() {
 
 async function loadUserInfo() {
     try {
-        const response = await fetch('/auth/user');
+        const response = await fetch('/cuentas/auth/user');
         const result = await response.json();
         
         if (response.ok) {

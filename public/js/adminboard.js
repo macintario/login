@@ -1,20 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
     checkAuthentication().then(() => {
         //displayUserInfo(user);
+        console.log('Usuario autenticado');
         cargaCapturados();
+        console.log('Usuario autenticado, datos cargados.');
     });
 });
 
 async function checkAuthentication() {
     try {
-        const response = await fetch('/auth/check');
+        const response = await fetch('/cuentas/auth/check');
         const result = await response.json();
 
         if (!result.authenticated) {
-            window.location.href = '/cuentas';
+            console.log('Usuario no autenticado, redirigiendo a /cuentas');
+            //window.location.href = '/cuentas';
         }
     } catch (error) {
-        window.location.href = '/cuentas';
+        console.log('Error en autenticación, redirigiendo a /cuentas', error);
+//        window.location.href = '/cuentas';
     }
 }
 
@@ -28,7 +32,7 @@ async function cargaCapturados() {
             agregaFila(registro);
         }
     }).catch(error => {
-        //        console.error('Error al obtener datos de cuentas:', error);
+                console.error('Error al obtener datos de cuentas:', error);
     });
 }
 
@@ -109,7 +113,7 @@ function showMessage(message, type) {
 // Funciones de las acciones
 function showProfile() {
     // Obtener datos frescos antes de mostrar el perfil
-    fetch('/auth/escuela')
+    fetch('/cuentas/auth/escuela')
         .then(response => response.json())
         .then(data => {
             alert(`Perfil de ${data.escuela.siglas}`);
@@ -122,7 +126,7 @@ function showProfile() {
 
 function capturaDatos() {
     console.log('Redirigiendo a captura de datos...');
-    window.location.href = '/captura';
+    window.location.href = '/cuentas/captura';
 }
 
 

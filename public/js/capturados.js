@@ -12,7 +12,7 @@ function agregaRegistro() {
 
 async function checkAuthentication() {
     try {
-        const response = await fetch('/auth/check');
+        const response = await fetch('/cuentas/auth/check');
         const result = await response.json();
         //        console.log(result);
         if (!result.authenticated) {
