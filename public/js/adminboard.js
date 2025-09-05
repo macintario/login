@@ -18,21 +18,23 @@ async function checkAuthentication() {
         }
     } catch (error) {
         console.log('Error en autenticación, redirigiendo a /cuentas', error);
-//        window.location.href = '/cuentas';
+        //        window.location.href = '/cuentas';
     }
 }
 
 
 async function cargaCapturados() {
     console.log('Cargando datos capturados...');
+    showSpinner();
     fetch('/cuentas/auth/totesc').then(response => response.json()).then(data => {
         console.log('Datos recibidos:', data);
         for (const registro of data.data) {
             console.log('Registro:', registro);
             agregaFila(registro);
         }
+        hideSpinner();
     }).catch(error => {
-                console.error('Error al obtener datos de cuentas:', error);
+        console.error('Error al obtener datos de cuentas:', error);
     });
 }
 
@@ -52,7 +54,8 @@ function agregaFila(registro) {
     celdaBoton.appendChild(imprimirBtn);
 
     imprimirBtn.onclick = function () {
-//        alert('Funcionalidad de impresión en desarrollo');
+        //        alert('Funcionalidad de impresión en desarrollo');
+        showSpinner();
         fetch(`/cuentas/generaPDF/${registro.idEscuela}`)
             .then(response => {
                 if (response.ok) {
@@ -70,11 +73,13 @@ function agregaFila(registro) {
                 a.click();
                 a.remove();
                 window.URL.revokeObjectURL(url);
+                hideSpinner();
             })
             .catch(error => {
                 console.error('Error al generar el PDF:', error);
                 showMessage('Error al generar el PDF', 'error');
             });
+        
     }
 }
 
@@ -137,6 +142,18 @@ function showSettings() {
 function showReports() {
     alert('Funcionalidad de reportes en desarrollo');
 }
+
+function showSpinner() {
+    document.getElementById('loading-spinner').classList.add('spinner');
+    console.log('Mostrando spinner...');
+}
+
+function hideSpinner() {
+    document.getElementById('loading-spinner').classList.remove('spinner');
+    
+    console.log('Ocultando spinner...');
+}
+
 
 // Verificar sesión periódicamente
 setInterval(checkAuthentication, 300000);

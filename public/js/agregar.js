@@ -36,6 +36,11 @@ function guardarDatos() {
         alert('CLABE incorrecta: ' + validacion.error);
         return;
     }
+    validacion = validaRFC(data['rfc']);
+    if (!validacion) {
+        alert('RFC incorrecto');
+        return;
+    }
     //console.log('Datos a enviar:', data);
     fetch('/cuentas/auth/agregarcta', {
         method: 'POST',
